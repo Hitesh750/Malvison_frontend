@@ -129,7 +129,7 @@ function HomePage() {
               {/* floating cards */}
               <div className="absolute left-6 top-6 rounded-xl border border-border bg-background/90 px-3 py-2 shadow-sm backdrop-blur">
                 <div className="flex items-center gap-2 text-xs font-mono">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                   AI · ONLINE
                 </div>
               </div>
