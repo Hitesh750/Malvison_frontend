@@ -258,7 +258,7 @@ function HomePage() {
                   Start a project <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
-                  to="/portfolio"
+                  to="/projects"
                   className="inline-flex items-center gap-2 rounded-lg border border-primary-foreground/20 px-7 py-3.5 font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
                 >
                   See our work
