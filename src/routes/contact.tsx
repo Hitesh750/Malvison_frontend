@@ -36,12 +36,31 @@ function ContactPage() {
         <div className="container-px mx-auto max-w-7xl py-20 md:py-28">
           <div className="text-mono-eyebrow mb-6">Contact</div>
           <h1 className="max-w-4xl text-5xl font-bold tracking-tight md:text-6xl">
-            Let's build something <span className="text-accent">remarkable.</span>
+            Let's engineer something <span className="text-accent">remarkable.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
-            Tell us a little about your project and we'll get back to you within
-            one business day.
+            From AI-powered platforms and cloud-native architectures to scalable
+            web and mobile products — share your idea, tech stack, or business
+            challenge. Our team will review your requirements and respond with a
+            tailored proposal, architecture outline, and timeline within one
+            business day.
           </p>
+          <div className="mt-8 flex flex-wrap gap-2">
+            {[
+              "AI / LLM Integration",
+              "Cloud & DevOps",
+              "Full-Stack Web Apps",
+              "API & Backend Systems",
+              "MVP in 4–6 weeks",
+            ].map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-foreground/80"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
