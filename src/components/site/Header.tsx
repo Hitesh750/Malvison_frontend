@@ -19,9 +19,8 @@ export function Header() {
       <div className="container-px mx-auto flex h-16 max-w-7xl items-center justify-between">
         <Link to="/" className="flex items-center gap-2.5">
           <Logo className="h-7 w-7" />
-          <span className="text-base font-semibold tracking-tight">Malvion</span>
-          <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground sm:inline">
-            Technologies
+          <span className="text-base font-semibold tracking-tight">
+            Malvion <span className="text-muted-foreground font-normal">Technologies</span>
           </span>
         </Link>
 
