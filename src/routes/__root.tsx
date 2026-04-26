@@ -38,6 +38,13 @@ export const Route = createRootRoute({
       { name: "author", content: "Malvion Technologies" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Malvion Technologies — Building Intelligent Digital Solutions" },
+      { name: "twitter:title", content: "Malvion Technologies — Building Intelligent Digital Solutions" },
+      { name: "description", content: "Malvion Technologies builds intelligent digital solutions using AI, cloud, and web development." },
+      { property: "og:description", content: "Malvion Technologies builds intelligent digital solutions using AI, cloud, and web development." },
+      { name: "twitter:description", content: "Malvion Technologies builds intelligent digital solutions using AI, cloud, and web development." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/dd4dc589-3e88-4caf-923b-c24c36763405/id-preview-6eac3ad5--25222df6-dad7-4a5e-9ed5-badc84aaf3c8.lovable.app-1777185872612.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/dd4dc589-3e88-4caf-923b-c24c36763405/id-preview-6eac3ad5--25222df6-dad7-4a5e-9ed5-badc84aaf3c8.lovable.app-1777185872612.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
