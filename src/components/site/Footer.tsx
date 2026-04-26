@@ -54,9 +54,17 @@ export function Footer() {
           <div>
             <p className="text-mono-eyebrow mb-4">Contact</p>
             <ul className="space-y-3 text-sm">
-              <li className="text-foreground/80">hello@malvion.tech</li>
-              <li className="text-foreground/80">+91 90000 00000</li>
-              <li className="text-muted-foreground">Indore, India</li>
+              <li>
+                <a href="mailto:hiteshmalviya06@gmail.com" className="text-foreground/80 hover:text-accent">
+                  hiteshmalviya06@gmail.com
+                </a>
+              </li>
+              <li>
+                <a href="tel:+919509722217" className="text-foreground/80 hover:text-accent">
+                  +91 95097 22217
+                </a>
+              </li>
+              <li className="text-muted-foreground">Jodhpur, India</li>
             </ul>
           </div>
         </div>

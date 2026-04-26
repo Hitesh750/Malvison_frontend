@@ -51,11 +51,11 @@ function ContactPage() {
             <ContactRow
               icon={Mail}
               label="Email"
-              value="hello@malvion.tech"
-              href="mailto:hello@malvion.tech"
+              value="hiteshmalviya06@gmail.com"
+              href="mailto:hiteshmalviya06@gmail.com"
             />
-            <ContactRow icon={Phone} label="Phone" value="+91 90000 00000" href="tel:+919000000000" />
-            <ContactRow icon={MapPin} label="Location" value="Indore, India" />
+            <ContactRow icon={Phone} label="Phone" value="+91 95097 22217" href="tel:+919509722217" />
+            <ContactRow icon={MapPin} label="Location" value="Jodhpur, India" />
 
             <div className="rounded-2xl border border-border bg-surface p-6">
               <div className="text-mono-eyebrow mb-2">Office hours</div>

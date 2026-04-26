@@ -51,22 +51,28 @@ function HomePage() {
     <SiteLayout>
       {/* HERO */}
       <section className="relative overflow-hidden">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 grid-bg" />
         <div
           aria-hidden
-          className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60 blur-3xl animate-pulse-slow"
+          className="pointer-events-none absolute left-1/2 top-1/3 -z-10 h-[80%] w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-70 blur-3xl animate-pulse-slow"
           style={{
             background:
-              "radial-gradient(circle at center, oklch(72% 0.16 85 / 0.18), transparent 60%)",
+              "radial-gradient(ellipse at center, oklch(72% 0.16 85 / 0.18), oklch(55% 0.15 220 / 0.10) 40%, transparent 70%)",
           }}
         />
         <div className="container-px mx-auto grid max-w-7xl items-center gap-16 py-20 md:grid-cols-2 md:py-28 lg:py-32">
           <div>
-            <div className="text-mono-eyebrow mb-6 inline-flex items-center gap-2">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
-              Malvion Technologies
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1 backdrop-blur">
+              <span className="relative inline-flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                Open for new projects
+              </span>
             </div>
             <h1 className="text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
-              <span className="text-accent">Building</span> Intelligent <br className="hidden md:inline" />
+              Building <span className="text-gradient-accent">Intelligent</span> <br className="hidden md:inline" />
               Digital Solutions
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground md:text-xl">
@@ -76,14 +82,14 @@ function HomePage() {
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 to="/contact"
-                className="group inline-flex items-center gap-2 rounded-lg bg-accent px-7 py-3.5 font-semibold text-accent-foreground shadow-sm transition-all hover:translate-y-[-1px] hover:shadow-lg"
+                className="group inline-flex items-center gap-2 rounded-lg bg-primary px-7 py-3.5 font-semibold text-primary-foreground shadow-[var(--shadow-soft)] transition-all hover:translate-y-[-1px] hover:shadow-[var(--shadow-elegant)]"
               >
                 Get Started
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/services"
-                className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-7 py-3.5 font-semibold text-foreground transition-colors hover:bg-surface"
+                className="inline-flex items-center gap-2 rounded-lg border border-border bg-background/60 px-7 py-3.5 font-semibold text-foreground backdrop-blur transition-colors hover:bg-surface"
               >
                 Explore Services
               </Link>
@@ -91,7 +97,7 @@ function HomePage() {
 
             <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-4">
               {stats.map((s) => (
-                <div key={s.v}>
+                <div key={s.v} className="border-l-2 border-accent/40 pl-4">
                   <div className="text-2xl font-bold text-foreground md:text-3xl">{s.k}</div>
                   <div className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">
                     {s.v}
@@ -103,8 +109,8 @@ function HomePage() {
 
           {/* Visual */}
           <div className="relative">
-            <div className="relative aspect-square overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-surface to-background shadow-[var(--shadow-elegant)]">
-              {/* concentric */}
+            <div className="relative aspect-square overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-surface via-background to-surface shadow-[var(--shadow-elegant)]">
+              <div aria-hidden className="absolute inset-0 grid-bg opacity-60" />
               <div className="absolute inset-0 grid place-items-center">
                 <div className="relative h-72 w-72">
                   <div className="absolute inset-0 rounded-full border border-border/80" />
@@ -120,26 +126,28 @@ function HomePage() {
                         "radial-gradient(circle, transparent 55%, black 56%, black 70%, transparent 71%)",
                     }}
                   />
-                  <div className="absolute inset-20 grid place-items-center rounded-full bg-primary text-primary-foreground shadow-xl">
+                  <div
+                    className="absolute inset-20 grid place-items-center rounded-full text-primary-foreground shadow-xl"
+                    style={{ background: "var(--gradient-primary)" }}
+                  >
                     <Sparkles className="h-8 w-8 text-accent" />
                   </div>
                 </div>
               </div>
 
-              {/* floating cards */}
-              <div className="absolute left-6 top-6 rounded-xl border border-border bg-background/90 px-3 py-2 shadow-sm backdrop-blur">
+              <div className="animate-float absolute left-6 top-6 rounded-xl border border-border bg-background/90 px-3 py-2 shadow-sm backdrop-blur">
                 <div className="flex items-center gap-2 text-xs font-mono">
                   <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                   AI · ONLINE
                 </div>
               </div>
-              <div className="absolute bottom-6 right-6 rounded-xl border border-border bg-background/90 px-3 py-2 shadow-sm backdrop-blur">
+              <div className="animate-float-delayed absolute bottom-6 right-6 rounded-xl border border-border bg-background/90 px-3 py-2 shadow-sm backdrop-blur">
                 <div className="font-mono text-[11px] text-muted-foreground">
                   edge.malvion.tech
                 </div>
                 <div className="font-mono text-xs text-foreground">200 OK · 42ms</div>
               </div>
-              <div className="absolute right-8 top-16 rounded-xl border border-border bg-background/90 px-3 py-2 shadow-sm backdrop-blur">
+              <div className="animate-float absolute right-8 top-16 rounded-xl border border-border bg-background/90 px-3 py-2 shadow-sm backdrop-blur">
                 <div className="text-mono-eyebrow !text-[10px]">Throughput</div>
                 <div className="text-sm font-semibold">12.4k req/s</div>
               </div>
