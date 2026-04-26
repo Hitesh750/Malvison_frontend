@@ -180,6 +180,28 @@
     text-transform: uppercase;
     color: var(--color-muted-foreground);
   }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, oklch(28% 0.10 260 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(28% 0.10 260 / 0.06) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+
+  .text-gradient-accent {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glass {
+    background: color-mix(in oklab, var(--background) 70%, transparent);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+  }
 }
 
 @keyframes pulse-slow {
@@ -191,5 +213,12 @@
   to { transform: rotate(360deg); }
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
 .animate-pulse-slow { animation: pulse-slow 6s ease-in-out infinite; }
 .animate-spin-slow { animation: spin-slow 24s linear infinite; }
+.animate-float { animation: float 5s ease-in-out infinite; }
+.animate-float-delayed { animation: float 5s ease-in-out infinite; animation-delay: 1.5s; }
