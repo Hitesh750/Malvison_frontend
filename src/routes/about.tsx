@@ -9,12 +9,13 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Founded by Hitesh Malviya, Malvion Technologies engineers AI, Cloud, and software solutions with precision and care.",
+          "Malvion Technologies delivers modern AI, Cloud, and software solutions designed to help businesses grow faster and smarter.",
       },
       { property: "og:title", content: "About — Malvion Technologies" },
       {
         property: "og:description",
-        content: "Our story, vision, and the team building intelligent digital solutions.",
+        content:
+          "Discover our journey, mission, and the passionate team behind innovative digital solutions.",
       },
     ],
   }),
@@ -27,13 +28,17 @@ function AboutPage() {
       <section className="border-b border-border">
         <div className="container-px mx-auto max-w-7xl py-20 md:py-28">
           <div className="text-mono-eyebrow mb-6">About us</div>
+
           <h1 className="max-w-4xl text-5xl font-bold tracking-tight md:text-6xl">
-            We engineer <span className="text-accent">digital systems</span> that quietly do the hard work.
+            Building <span className="text-accent">smart digital solutions</span>{" "}
+            for modern businesses.
           </h1>
+
           <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
-            Malvion Technologies is a software studio focused on AI, Cloud, and
-            full-stack development. We work with founders and product teams to
-            ship reliable software, fast.
+            At Malvion Technologies, we specialize in AI-powered applications,
+            Cloud infrastructure, and scalable software development. Our goal is
+            to help startups, enterprises, and growing businesses turn ideas
+            into reliable digital products with speed, quality, and innovation.
           </p>
         </div>
       </section>
@@ -42,24 +47,27 @@ function AboutPage() {
       <section className="bg-surface">
         <div className="container-px mx-auto grid max-w-7xl gap-12 py-24 md:grid-cols-3">
           <div>
-            <div className="text-mono-eyebrow mb-3">Founder</div>
-            <h2 className="text-3xl font-bold tracking-tight">Hitesh Malviya</h2>
-            <p className="mt-2 font-mono text-sm text-muted-foreground">
-              CEO · Software Engineer
-            </p>
+            <div className="text-mono-eyebrow mb-3">Founder & CEO</div>
+
+            <h2 className="text-3xl font-bold tracking-tight">
+              Hitesh Malviya
+            </h2>
           </div>
+
           <div className="md:col-span-2">
             <p className="text-lg leading-relaxed text-foreground/85">
-              Malvion was started with a simple belief: software should feel
-              effortless to use and rigorous underneath. After years building
-              cloud and AI products for teams across industries, our founder
-              Hitesh Malviya set out to create a studio where craftsmanship and
-              modern engineering go hand in hand.
+              Malvion Technologies was founded with a vision to create powerful,
+              user-friendly, and future-ready software solutions. With expertise
+              in modern web technologies, AI systems, and cloud platforms,
+              Hitesh Malviya started the company to help businesses simplify
+              operations and accelerate digital growth.
             </p>
+
             <p className="mt-4 text-lg leading-relaxed text-foreground/85">
-              Today, we partner with companies of every size — from early-stage
-              startups to established enterprises — to translate ambitious ideas
-              into shippable products.
+              Today, we work with startups, educational institutions,
+              healthcare providers, and enterprises to deliver custom software,
+              automation systems, cloud services, and digital transformation
+              solutions that create real business impact.
             </p>
           </div>
         </div>
@@ -73,17 +81,17 @@ function AboutPage() {
               {
                 icon: Compass,
                 title: "Our Vision",
-                desc: "To be the engineering partner of choice for teams building intelligent, durable software.",
+                desc: "To become a trusted global technology partner delivering innovative and intelligent digital solutions.",
               },
               {
                 icon: Target,
                 title: "Our Mission",
-                desc: "Deliver AI, Cloud, and software solutions with precision, transparency, and lasting impact.",
+                desc: "Empowering businesses with scalable software, AI solutions, and cloud technologies that drive growth and efficiency.",
               },
               {
                 icon: Users,
                 title: "Our Values",
-                desc: "Craft over noise. Honesty over hype. Long-term partnerships over quick wins.",
+                desc: "Innovation, transparency, quality, and long-term partnerships are at the core of everything we build.",
               },
             ].map((b) => (
               <div
@@ -93,7 +101,9 @@ function AboutPage() {
                 <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground">
                   <b.icon className="h-5 w-5 text-accent" />
                 </div>
+
                 <h3 className="text-xl font-semibold">{b.title}</h3>
+
                 <p className="mt-2 text-muted-foreground">{b.desc}</p>
               </div>
             ))}
@@ -101,14 +111,20 @@ function AboutPage() {
         </div>
       </section>
 
+      {/* CTA */}
       <section className="border-t border-border bg-surface">
         <div className="container-px mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 py-16 md:flex-row md:items-center">
           <div>
             <h3 className="text-2xl font-bold tracking-tight md:text-3xl">
-              Let's build something worth using.
+              Let’s create the future together.
             </h3>
-            <p className="mt-2 text-muted-foreground">Talk to the team — we respond within a day.</p>
+
+            <p className="mt-2 text-muted-foreground">
+              Have an idea or project in mind? Our team is ready to help you
+              build it.
+            </p>
           </div>
+
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 rounded-lg bg-accent px-7 py-3.5 font-semibold text-accent-foreground"

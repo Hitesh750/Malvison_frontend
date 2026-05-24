@@ -25,10 +25,37 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   const [sent, setSent] = useState(false);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setSent(true);
+ async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  e.preventDefault();
+
+  const formData = new FormData(e.currentTarget);
+
+  const data = {
+  name: formData.get("name"),
+  email: formData.get("email"),
+  company: formData.get("company"),
+  project_budget: formData.get("budget"),        
+  project_description: formData.get("message"),  
+};
+
+  try {
+    const res = await fetch("http://127.0.0.1:8000/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await res.json();
+    console.log(result);
+
+    setSent(true); // success UI
+  } catch (error) {
+    console.error(error);
+    alert("Error sending message");
   }
+}
 
   return (
     <SiteLayout>
@@ -90,7 +117,7 @@ function ContactPage() {
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-accent-foreground">
                   <CheckCircle2 className="h-6 w-6" />
                 </div>
-                <h3 className="mt-6 text-2xl font-semibold">Message received</h3>
+                <h3 className="mt-6 text-2xl font-semibold">Request Submit Successfully</h3>
                 <p className="mt-2 max-w-md text-muted-foreground">
                   Thanks for reaching out. We'll be in touch within one business day.
                 </p>
