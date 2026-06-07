@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Mail, MapPin, Phone, Send, CheckCircle2 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-const API_URL = import.meta.env.VITE_API_URL;
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
@@ -39,7 +38,7 @@ function ContactPage() {
 };
 
   try {
-    const res = await fetch(`${API_URL}/api/contact`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
