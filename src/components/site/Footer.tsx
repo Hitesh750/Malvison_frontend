@@ -1,79 +1,81 @@
 import { Link } from "@tanstack/react-router";
 import { Logo } from "./Logo";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Github, Linkedin, Twitter, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-surface">
-      <div className="container-px mx-auto max-w-7xl py-16">
-        <div className="grid gap-12 md:grid-cols-4">
-          <div className="md:col-span-2">
-            <Link to="/" className="flex items-center gap-2.5">
-              <Logo className="h-7 w-7" />
-              <span className="text-base font-semibold tracking-tight">Malvion Technologies</span>
+    <footer className="bg-[#0A0A0A] text-white pt-40 pb-12 selection:bg-white selection:text-black">
+      <div className="container-lux">
+        
+        <div className="flex flex-col md:flex-row justify-between items-start gap-20 mb-32">
+          
+          <div className="max-w-sm">
+            <Link to="/" className="inline-block mb-8">
+              {/* Logo container with white background to handle the specific image */}
+              <div className="bg-white p-2 rounded-lg inline-flex">
+                <Logo className="h-10 w-auto" />
+              </div>
             </Link>
-            <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-              Building Intelligent Digital Solutions. Precision AI, robust Cloud
-              infrastructure, and bespoke Software Development.
+            <p className="text-[#888888] text-[15px] leading-relaxed mb-10">
+              Designing and engineering the digital infrastructure of tomorrow. Built for performance, security, and scale.
             </p>
-            <div className="mt-6 flex items-center gap-3">
-              <a
-                href="#"
-                aria-label="LinkedIn"
-                className="rounded-md border border-border bg-background p-2 text-foreground/70 transition-colors hover:text-accent"
-              >
-                <Linkedin className="h-4 w-4" />
-              </a>
-              <a
-                href="#"
-                aria-label="GitHub"
-                className="rounded-md border border-border bg-background p-2 text-foreground/70 transition-colors hover:text-accent"
-              >
-                <Github className="h-4 w-4" />
-              </a>
-              <a
-                href="#"
-                aria-label="Twitter"
-                className="rounded-md border border-border bg-background p-2 text-foreground/70 transition-colors hover:text-accent"
-              >
-                <Twitter className="h-4 w-4" />
-              </a>
+            <div className="flex gap-4">
+              {[
+                { icon: Twitter, href: "#" },
+                { icon: Github, href: "#" },
+                { icon: Linkedin, href: "#" },
+              ].map((Social, i) => (
+                <motion.a
+                  key={i}
+                  href={Social.href}
+                  whileHover={{ y: -2 }}
+                  className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-[#888888] hover:text-white hover:border-white/30 transition-colors"
+                >
+                  <Social.icon className="w-4 h-4" />
+                </motion.a>
+              ))}
             </div>
           </div>
 
-          <div>
-            <p className="text-mono-eyebrow mb-4">Company</p>
-            <ul className="space-y-3 text-sm">
-              <li><Link to="/about" className="text-foreground/80 hover:text-accent">About</Link></li>
-              <li><Link to="/services" className="text-foreground/80 hover:text-accent">Services</Link></li>
-              <li><Link to="/projects" className="text-foreground/80 hover:text-accent">Projects</Link></li>
-              <li><Link to="/clients" className="text-foreground/80 hover:text-accent">Clients</Link></li>
-              <li><Link to="/contact" className="text-foreground/80 hover:text-accent">Contact</Link></li>
-            </ul>
-          </div>
+          <div className="flex gap-20 flex-wrap">
+            <div>
+              <h4 className="text-white font-medium mb-6 text-sm">Platform</h4>
+              <ul className="space-y-4 text-[15px] text-[#888888]">
+                <li><Link to="/" className="hover:text-white transition-colors group flex items-center gap-1">Architecture <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" /></Link></li>
+                <li><Link to="/" className="hover:text-white transition-colors group flex items-center gap-1">Intelligence <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" /></Link></li>
+                <li><Link to="/" className="hover:text-white transition-colors group flex items-center gap-1">Security <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" /></Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-white font-medium mb-6 text-sm">Company</h4>
+              <ul className="space-y-4 text-[15px] text-[#888888]">
+                <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
+                <li><Link to="/projects" className="hover:text-white transition-colors">Customers</Link></li>
+                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              </ul>
+            </div>
 
-          <div>
-            <p className="text-mono-eyebrow mb-4">Contact</p>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <a href="mailto:hiteshmalviya06@gmail.com" className="text-foreground/80 hover:text-accent">
-                  hiteshmalviya06@gmail.com
-                </a>
-              </li>
-              <li>
-                <a href="tel:+919509722217" className="text-foreground/80 hover:text-accent">
-                  +91 95097 22217
-                </a>
-              </li>
-              <li className="text-muted-foreground">Jodhpur, India</li>
-            </ul>
+            <div>
+              <h4 className="text-white font-medium mb-6 text-sm">Legal</h4>
+              <ul className="space-y-4 text-[15px] text-[#888888]">
+                <li><Link to="/" className="hover:text-white transition-colors">Privacy</Link></li>
+                <li><Link to="/" className="hover:text-white transition-colors">Terms</Link></li>
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[#888888] text-sm">
+          <p>© {new Date().getFullYear()} Malvion Technologies.</p>
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            All systems operational
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:justify-between">
-          <p>© {new Date().getFullYear()} Malvion Technologies. All rights reserved.</p>
-          <p className="font-mono uppercase tracking-[0.2em]">v1.0 — Built with intent</p>
-        </div>
       </div>
     </footer>
   );

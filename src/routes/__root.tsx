@@ -1,26 +1,34 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { SmoothScrollProvider } from "@/components/layout/SmoothScrollProvider";
 
 import appCss from "../styles.css?url";
 
+import { SiteLayout } from "@/components/site/SiteLayout";
+
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
+    <SiteLayout>
+      <div className="flex min-h-[80vh] items-center justify-center bg-background px-4">
+        <div className="max-w-md text-center">
+          <div className="text-[10px] font-mono tracking-widest text-accent uppercase mb-4">
+            SYS_ERR_404
+          </div>
+          <h1 className="text-7xl md:text-9xl font-display font-bold text-primary-deep mb-4">404</h1>
+          <h2 className="text-2xl md:text-3xl font-display font-semibold text-primary mb-6">Page not found</h2>
+          <p className="text-lg text-secondary font-light mb-10">
+            The page you're looking for doesn't exist, has been moved, or is currently under development.
+          </p>
+          <div className="flex justify-center">
+            <Link
+              to="/"
+              className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-3 text-sm font-medium text-white transition-all hover:bg-primary-navy shadow-[0_0_20px_rgba(8,120,232,0.15)] hover:shadow-[0_0_30px_rgba(11,46,115,0.2)]"
+            >
+              Return Home
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </SiteLayout>
   );
 }
 
@@ -76,5 +84,9 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <SmoothScrollProvider>
+      <Outlet />
+    </SmoothScrollProvider>
+  );
 }
