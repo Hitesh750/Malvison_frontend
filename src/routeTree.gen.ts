@@ -9,14 +9,27 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TechnologyRouteImport } from './routes/technology'
+import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SandboxRouteImport } from './routes/sandbox'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CompanyRouteImport } from './routes/company'
 import { Route as ClientsRouteImport } from './routes/clients'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TechnologyRoute = TechnologyRouteImport.update({
+  id: '/technology',
+  path: '/technology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolutionsRoute = SolutionsRouteImport.update({
+  id: '/solutions',
+  path: '/solutions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -35,6 +48,11 @@ const ProjectsRoute = ProjectsRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompanyRoute = CompanyRouteImport.update({
+  id: '/company',
+  path: '/company',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ClientsRoute = ClientsRouteImport.update({
@@ -57,29 +75,38 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/clients': typeof ClientsRoute
+  '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
   '/projects': typeof ProjectsRoute
   '/sandbox': typeof SandboxRoute
   '/services': typeof ServicesRoute
+  '/solutions': typeof SolutionsRoute
+  '/technology': typeof TechnologyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/clients': typeof ClientsRoute
+  '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
   '/projects': typeof ProjectsRoute
   '/sandbox': typeof SandboxRoute
   '/services': typeof ServicesRoute
+  '/solutions': typeof SolutionsRoute
+  '/technology': typeof TechnologyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/clients': typeof ClientsRoute
+  '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
   '/projects': typeof ProjectsRoute
   '/sandbox': typeof SandboxRoute
   '/services': typeof ServicesRoute
+  '/solutions': typeof SolutionsRoute
+  '/technology': typeof TechnologyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,42 +114,68 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/clients'
+    | '/company'
     | '/contact'
     | '/projects'
     | '/sandbox'
     | '/services'
+    | '/solutions'
+    | '/technology'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/clients'
+    | '/company'
     | '/contact'
     | '/projects'
     | '/sandbox'
     | '/services'
+    | '/solutions'
+    | '/technology'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/clients'
+    | '/company'
     | '/contact'
     | '/projects'
     | '/sandbox'
     | '/services'
+    | '/solutions'
+    | '/technology'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ClientsRoute: typeof ClientsRoute
+  CompanyRoute: typeof CompanyRoute
   ContactRoute: typeof ContactRoute
   ProjectsRoute: typeof ProjectsRoute
   SandboxRoute: typeof SandboxRoute
   ServicesRoute: typeof ServicesRoute
+  SolutionsRoute: typeof SolutionsRoute
+  TechnologyRoute: typeof TechnologyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/technology': {
+      id: '/technology'
+      path: '/technology'
+      fullPath: '/technology'
+      preLoaderRoute: typeof TechnologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solutions': {
+      id: '/solutions'
+      path: '/solutions'
+      fullPath: '/solutions'
+      preLoaderRoute: typeof SolutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -149,6 +202,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/company': {
+      id: '/company'
+      path: '/company'
+      fullPath: '/company'
+      preLoaderRoute: typeof CompanyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/clients': {
@@ -179,10 +239,13 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ClientsRoute: ClientsRoute,
+  CompanyRoute: CompanyRoute,
   ContactRoute: ContactRoute,
   ProjectsRoute: ProjectsRoute,
   SandboxRoute: SandboxRoute,
   ServicesRoute: ServicesRoute,
+  SolutionsRoute: SolutionsRoute,
+  TechnologyRoute: TechnologyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

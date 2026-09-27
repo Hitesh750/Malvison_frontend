@@ -1,8 +1,5 @@
 import React from "react";
 import { Link } from "@tanstack/react-router";
-import { Github, Twitter, Linkedin } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import logo from "@/assets/logo.png";
 
 const FOOTER_LINKS = {
   solutions: [
@@ -26,97 +23,85 @@ const FOOTER_LINKS = {
 
 export function Footer() {
   return (
-    <footer className="bg-primary-deep text-white pt-20 pb-10 border-t border-white/10">
-      <div className="container-lux">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
-          {/* Company Column */}
-          <div className="lg:col-span-2 flex flex-col items-start">
-            <Link to="/" className="flex items-center gap-2 group mb-6 bg-white p-2 rounded-lg">
-               {/* Logo displayed on a white rounded rect for contrast since it's the primary colored logo */}
-               <img src={logo} alt="Malvision Technologies" className="h-8 w-auto object-contain" />
-            </Link>
-            <p className="text-white/70 mb-8 max-w-sm">
-              Turning Vision into Technology. We build intelligent systems and robust software to empower your business.
+    <footer className="bg-primary-deep text-white pt-24 pb-12">
+      <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
+        
+        {/* Massive Typography Footer Header */}
+        <div className="mb-24">
+          <h2 className="text-[3rem] md:text-[5rem] lg:text-[7rem] font-medium tracking-tight leading-[0.95] text-white">
+            Let's build <br className="hidden md:block"/> something iconic.
+          </h2>
+          <div className="mt-12 flex flex-col md:flex-row gap-6 md:items-center justify-between border-t border-white/10 pt-8">
+            <p className="text-xl md:text-2xl text-secondary/70 font-light max-w-lg">
+              Partner with Malvision to transform your ambitious ideas into reality.
             </p>
-            <div className="flex gap-4">
-              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent-bright hover:text-white transition-colors">
-                <Twitter className="w-5 h-5 text-white/80" />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent-bright hover:text-white transition-colors">
-                <Linkedin className="w-5 h-5 text-white/80" />
-              </a>
-              <a href="https://github.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent-bright hover:text-white transition-colors">
-                <Github className="w-5 h-5 text-white/80" />
-              </a>
-            </div>
-          </div>
-
-          {/* Links Columns */}
-          <div>
-            <h4 className="font-display font-semibold text-lg mb-6 text-white">AI Solutions</h4>
-            <ul className="flex flex-col gap-4">
-              {FOOTER_LINKS.solutions.map((link) => (
-                <li key={link.name}>
-                  <Link to={link.href as any} className="text-white/60 hover:text-accent-bright transition-colors">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-display font-semibold text-lg mb-6 text-white">Development</h4>
-            <ul className="flex flex-col gap-4">
-              {FOOTER_LINKS.development.map((link) => (
-                <li key={link.name}>
-                  <Link to={link.href as any} className="text-white/60 hover:text-accent-bright transition-colors">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-display font-semibold text-lg mb-6 text-white">Resources</h4>
-            <ul className="flex flex-col gap-4">
-              {FOOTER_LINKS.resources.map((link) => (
-                <li key={link.name}>
-                  <Link to={link.href as any} className="text-white/60 hover:text-accent-bright transition-colors">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <Link 
+              to="/contact" 
+              className="inline-block bg-white text-primary text-lg font-medium px-8 py-4 hover:bg-border transition-colors"
+            >
+              Start a Project
+            </Link>
           </div>
         </div>
 
-        {/* Newsletter CTA */}
-        <div className="border-t border-white/10 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <h4 className="font-display font-semibold text-xl mb-2 text-white">Subscribe to our newsletter</h4>
-            <p className="text-white/60">Insights on AI, engineering, and digital transformation.</p>
+        {/* Links Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-24">
+          <div className="lg:col-span-1">
+            <Link to="/" className="inline-block mb-6">
+              <span className="font-semibold text-2xl tracking-tight text-white">MALVISION.</span>
+            </Link>
+            <p className="text-secondary/70 text-sm leading-relaxed max-w-xs">
+              Strategic design and engineering for ambitious teams. Based globally.
+            </p>
           </div>
-          <div className="flex w-full md:w-auto gap-2">
-            <input 
-              type="email" 
-              placeholder="Enter your email" 
-              className="bg-white/5 border border-white/10 rounded-md px-4 py-2 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent-bright w-full md:w-64"
-            />
-            <Button variant="default" className="bg-accent hover:bg-accent-bright text-white border-none">
-              Subscribe
-            </Button>
+
+          <div>
+            <h4 className="text-xs uppercase tracking-[0.2em] text-secondary font-semibold mb-6">AI Solutions</h4>
+            <ul className="flex flex-col gap-3">
+              {FOOTER_LINKS.solutions.map((link) => (
+                <li key={link.name}>
+                  <Link to={link.href as any} className="text-white/60 hover:text-white transition-colors text-sm">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-xs uppercase tracking-[0.2em] text-secondary font-semibold mb-6">Development</h4>
+            <ul className="flex flex-col gap-3">
+              {FOOTER_LINKS.development.map((link) => (
+                <li key={link.name}>
+                  <Link to={link.href as any} className="text-white/60 hover:text-white transition-colors text-sm">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-xs uppercase tracking-[0.2em] text-secondary font-semibold mb-6">Resources</h4>
+            <ul className="flex flex-col gap-3">
+              {FOOTER_LINKS.resources.map((link) => (
+                <li key={link.name}>
+                  <Link to={link.href as any} className="text-white/60 hover:text-white transition-colors text-sm">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/50">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-secondary">
           <p>© {new Date().getFullYear()} Malvision Technologies. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link to="/privacy-policy" className="hover:text-accent-bright transition-colors">Privacy Policy</Link>
-            <Link to="/terms" className="hover:text-accent-bright transition-colors">Terms of Service</Link>
-            <Link to="/cookie-policy" className="hover:text-accent-bright transition-colors">Cookie Policy</Link>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors uppercase tracking-widest text-xs">Twitter</a>
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors uppercase tracking-widest text-xs">LinkedIn</a>
+            <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors uppercase tracking-widest text-xs">GitHub</a>
           </div>
         </div>
       </div>

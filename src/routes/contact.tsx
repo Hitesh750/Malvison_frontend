@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Mail, MapPin, Phone, Send, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
+
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
@@ -11,11 +12,6 @@ export const Route = createFileRoute("/contact")({
         content:
           "Get in touch with Malvion Technologies. Email, phone, and project inquiry form.",
       },
-      { property: "og:title", content: "Contact — Malvion Technologies" },
-      {
-        property: "og:description",
-        content: "Tell us about your project. We respond within one business day.",
-      },
     ],
   }),
   component: ContactPage,
@@ -24,205 +20,150 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   const [sent, setSent] = useState(false);
 
- async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-  e.preventDefault();
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      company: formData.get("company"),
+      project_budget: formData.get("budget"),        
+      project_description: formData.get("message"),  
+    };
 
-  const formData = new FormData(e.currentTarget);
-
-  const data = {
-  name: formData.get("name"),
-  email: formData.get("email"),
-  company: formData.get("company"),
-  project_budget: formData.get("budget"),        
-  project_description: formData.get("message"),  
-};
-
-  try {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    const result = await res.json();
-    console.log(result);
-
-    setSent(true); // success UI
-  } catch (error) {
-    console.error(error);
-    alert("Error sending message");
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      await res.json();
+      setSent(true);
+    } catch (error) {
+      console.error(error);
+      alert("Error sending message");
+    }
   }
-}
 
   return (
     <SiteLayout>
-      <section className="border-b border-border">
-        <div className="container-px mx-auto max-w-7xl py-20 md:py-28">
-          <div className="text-mono-eyebrow mb-6">Contact</div>
-          <h1 className="max-w-4xl text-5xl font-bold tracking-tight md:text-6xl">
-            Let's engineer something <span className="text-accent">remarkable.</span>
-          </h1>
-          <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
-            From AI-powered platforms and cloud-native architectures to scalable
-            web and mobile products — share your idea, tech stack, or business
-            challenge. Our team will review your requirements and respond with a
-            tailored proposal, architecture outline, and timeline within one
-            business day.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-2">
-            {[
-              "AI / LLM Integration",
-              "Cloud & DevOps",
-              "Full-Stack Web Apps",
-              "API & Backend Systems",
-              "MVP in 4–6 weeks",
-            ].map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-foreground/80"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      <section className="bg-background py-24 md:py-32">
+        <div className="container-lux mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          
+          <div className="flex flex-col">
+            <div className="text-xs font-semibold tracking-[0.2em] uppercase text-secondary mb-8">
+              Contact
+            </div>
+            <h1 className="text-[3.5rem] md:text-[5rem] lg:text-[6.5rem] font-medium text-primary leading-[0.95] tracking-tight mb-8">
+              Let's engineer <br />
+              <span className="text-secondary/70">something remarkable.</span>
+            </h1>
+            <p className="text-xl text-secondary/90 font-light leading-relaxed max-w-lg mb-16">
+              From AI-powered platforms and cloud-native architectures to scalable
+              web and mobile products — share your idea, tech stack, or business
+              challenge.
+            </p>
 
-      <section>
-        <div className="container-px mx-auto grid max-w-7xl gap-12 py-20 md:grid-cols-5">
-          <div className="space-y-6 md:col-span-2">
-            <ContactRow
-              icon={Mail}
-              label="Email"
-              value="hiteshmalviya06@gmail.com"
-              href="mailto:hiteshmalviya06@gmail.com"
-            />
-            <ContactRow icon={Phone} label="Phone" value="+91 95097 22217" href="tel:+919509722217" />
-            <ContactRow icon={MapPin} label="Location" value="Jodhpur, India" />
-
-            <div className="rounded-2xl border border-border bg-surface p-6">
-              <div className="text-mono-eyebrow mb-2">Office hours</div>
-              <p className="text-sm text-foreground/80">
-                Monday – Friday <br /> 10:00 — 19:00 IST
-              </p>
+            <div className="flex flex-col gap-12 border-t border-border pt-12">
+              <div className="flex flex-col gap-2">
+                <div className="text-[10px] font-semibold tracking-[0.2em] uppercase text-secondary">Email</div>
+                <a href="mailto:hiteshmalviya06@gmail.com" className="text-2xl font-medium text-primary hover:text-secondary transition-colors">
+                  hiteshmalviya06@gmail.com
+                </a>
+              </div>
+              <div className="flex flex-col gap-2">
+                <div className="text-[10px] font-semibold tracking-[0.2em] uppercase text-secondary">Phone</div>
+                <a href="tel:+919509722217" className="text-2xl font-medium text-primary hover:text-secondary transition-colors">
+                  +91 95097 22217
+                </a>
+              </div>
+              <div className="flex flex-col gap-2">
+                <div className="text-[10px] font-semibold tracking-[0.2em] uppercase text-secondary">Location</div>
+                <div className="text-xl text-primary font-light">
+                  Jodhpur, India <br /> (Monday – Friday, 10:00 — 19:00 IST)
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="md:col-span-3">
+          <div className="w-full bg-white border border-border p-8 md:p-12 shadow-sm relative top-0 lg:sticky lg:top-32">
             {sent ? (
-              <div className="flex h-full flex-col items-start justify-center rounded-2xl border border-border bg-card p-10">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-accent-foreground">
-                  <CheckCircle2 className="h-6 w-6" />
+              <div className="flex flex-col items-center justify-center text-center py-20 h-full">
+                <div className="w-20 h-20 bg-background text-primary flex items-center justify-center mb-8">
+                  <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="mt-6 text-2xl font-semibold">Request Submit Successfully</h3>
-                <p className="mt-2 max-w-md text-muted-foreground">
-                  Thanks for reaching out. We'll be in touch within one business day.
+                <h3 className="text-3xl font-medium text-primary mb-4">Request Received</h3>
+                <p className="text-lg text-secondary font-light mb-12 max-w-sm">
+                  Thanks for reaching out. We'll review your requirements and respond within one business day.
                 </p>
                 <button
                   type="button"
                   onClick={() => setSent(false)}
-                  className="mt-6 text-sm font-medium text-accent hover:underline"
+                  className="text-sm font-semibold uppercase tracking-widest text-primary hover:text-secondary transition-colors"
                 >
-                  Send another message →
+                  Send another message &rarr;
                 </button>
               </div>
             ) : (
-              <form
-                onSubmit={handleSubmit}
-                className="rounded-2xl border border-border bg-card p-8 md:p-10"
-              >
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <Field label="Name" name="name" placeholder="Hitesh Malviya" required />
-                  <Field label="Email" name="email" type="email" placeholder="you@company.com" required />
+              <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+                <h3 className="text-2xl font-medium text-primary mb-4">Project Details</h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="name" className="text-[10px] font-semibold tracking-[0.2em] text-secondary uppercase">Name</label>
+                    <input 
+                      id="name" name="name" type="text" required placeholder="Hitesh Malviya"
+                      className="bg-transparent border-b border-border/80 py-3 text-primary placeholder:text-secondary/50 focus:outline-none focus:border-primary transition-colors rounded-none"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="email" className="text-[10px] font-semibold tracking-[0.2em] text-secondary uppercase">Email</label>
+                    <input 
+                      id="email" name="email" type="email" required placeholder="you@company.com"
+                      className="bg-transparent border-b border-border/80 py-3 text-primary placeholder:text-secondary/50 focus:outline-none focus:border-primary transition-colors rounded-none"
+                    />
+                  </div>
                 </div>
-                <div className="mt-5 grid gap-5 sm:grid-cols-2">
-                  <Field label="Company" name="company" placeholder="Acme Inc." />
-                  <Field label="Budget (optional)" name="budget" placeholder="$10k – $50k" />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="company" className="text-[10px] font-semibold tracking-[0.2em] text-secondary uppercase">Company</label>
+                    <input 
+                      id="company" name="company" type="text" placeholder="Acme Inc."
+                      className="bg-transparent border-b border-border/80 py-3 text-primary placeholder:text-secondary/50 focus:outline-none focus:border-primary transition-colors rounded-none"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="budget" className="text-[10px] font-semibold tracking-[0.2em] text-secondary uppercase">Budget (Optional)</label>
+                    <input 
+                      id="budget" name="budget" type="text" placeholder="$10k – $50k"
+                      className="bg-transparent border-b border-border/80 py-3 text-primary placeholder:text-secondary/50 focus:outline-none focus:border-primary transition-colors rounded-none"
+                    />
+                  </div>
                 </div>
-                <div className="mt-5">
-                  <label className="text-mono-eyebrow mb-2 block">Project details</label>
-                  <textarea
-                    name="message"
-                    required
-                    rows={5}
-                    placeholder="Tell us about your goals, timeline, and what success looks like..."
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-accent"
+
+                <div className="flex flex-col gap-2 mt-4">
+                  <label htmlFor="message" className="text-[10px] font-semibold tracking-[0.2em] text-secondary uppercase">Project Scope</label>
+                  <textarea 
+                    id="message" name="message" required rows={5} placeholder="Tell us about your goals, timeline, and what success looks like..."
+                    className="bg-transparent border-b border-border/80 py-3 text-primary placeholder:text-secondary/50 focus:outline-none focus:border-primary transition-colors resize-none rounded-none"
                   />
                 </div>
-                <button
+                
+                <button 
                   type="submit"
-                  className="mt-8 inline-flex items-center gap-2 rounded-lg bg-accent px-7 py-3.5 font-semibold text-accent-foreground transition-all hover:translate-y-[-1px] hover:shadow-lg"
+                  className="mt-8 flex items-center justify-center gap-3 w-full py-6 bg-primary text-white text-sm font-semibold hover:bg-black transition-colors"
                 >
-                  Send message <Send className="h-4 w-4" />
+                  Submit Inquiry <ArrowRight className="w-4 h-4" />
                 </button>
               </form>
             )}
           </div>
+
         </div>
       </section>
     </SiteLayout>
-  );
-}
-
-function ContactRow({
-  icon: Icon,
-  label,
-  value,
-  href,
-}: {
-  icon: React.ComponentType<{ className?: string }>;
-  label: string;
-  value: string;
-  href?: string;
-}) {
-  const inner = (
-    <div className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 transition-colors hover:border-accent/50">
-      <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-        <Icon className="h-4 w-4 text-accent" />
-      </div>
-      <div>
-        <div className="text-mono-eyebrow">{label}</div>
-        <div className="mt-1 font-medium text-foreground">{value}</div>
-      </div>
-    </div>
-  );
-  return href ? (
-    <a href={href} className="block">
-      {inner}
-    </a>
-  ) : (
-    inner
-  );
-}
-
-function Field({
-  label,
-  name,
-  type = "text",
-  placeholder,
-  required,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  placeholder?: string;
-  required?: boolean;
-}) {
-  return (
-    <div>
-      <label htmlFor={name} className="text-mono-eyebrow mb-2 block">
-        {label}
-      </label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        required={required}
-        placeholder={placeholder}
-        className="w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-accent"
-      />
-    </div>
   );
 }

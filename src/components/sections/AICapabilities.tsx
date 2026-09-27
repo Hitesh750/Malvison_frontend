@@ -2,23 +2,21 @@ import React, { useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { Button } from "@/components/ui/button";
-import { BrainCircuit, MessageSquare, DatabaseZap, GitMerge, Fingerprint, LineChart } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const CAPABILITIES = [
-  { label: "Autonomous Agents", icon: BrainCircuit, angle: 0 },
-  { label: "Intelligent Copilots", icon: MessageSquare, angle: 60 },
-  { label: "RAG Systems", icon: DatabaseZap, angle: 120 },
-  { label: "Workflow Automation", icon: GitMerge, angle: 180 },
-  { label: "Custom LLMs", icon: Fingerprint, angle: 240 },
-  { label: "Predictive ML", icon: LineChart, angle: 300 },
+  { label: "Autonomous Agents", desc: "Self-correcting AI systems that execute complex multi-step workflows." },
+  { label: "Intelligent Copilots", desc: "Context-aware assistants embedded deeply into your core product." },
+  { label: "RAG Architecture", desc: "Retrieval-Augmented Generation built on enterprise vector databases." },
+  { label: "Workflow Automation", desc: "Intelligent routing and decision-making for business operations." },
+  { label: "Custom LLMs", desc: "Fine-tuned models deployed securely within your infrastructure." },
+  { label: "Predictive ML", desc: "Traditional machine learning models for forecasting and analysis." },
 ];
 
 export function AICapabilities() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Reveal text
     gsap.from(".ai-text-reveal > *", {
       scrollTrigger: {
         trigger: container.current,
@@ -31,103 +29,56 @@ export function AICapabilities() {
       ease: "power2.out",
     });
 
-    // Reveal the core
-    gsap.fromTo(".ai-core", 
-      { scale: 0.5, opacity: 0 },
-      {
-        scale: 1, 
-        opacity: 1,
-        duration: 1.5,
-        ease: "elastic.out(1, 0.5)",
-        scrollTrigger: {
-          trigger: ".ai-visualization",
-          start: "top 80%",
-        }
-      }
-    );
-
-    // Continuous rotation for the orbital rings
-    gsap.to(".ai-orbit-ring", {
-      rotate: 360,
-      duration: 40,
-      repeat: -1,
-      ease: "linear"
-    });
-
-    // Reveal orbital items
-    gsap.from(".ai-orbital-item", {
-      scale: 0,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: "back.out(1.5)",
+    gsap.from(".ai-cap-row", {
       scrollTrigger: {
-        trigger: ".ai-visualization",
-        start: "top 70%",
-      }
+        trigger: ".ai-cap-list",
+        start: "top 80%",
+      },
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: "power2.out",
     });
-
   }, { scope: container });
 
   return (
-    <section ref={container} className="py-32 bg-[#050A15] relative overflow-hidden">
-      {/* Mesh Background */}
-      <div className="absolute inset-0 bg-primary/20 pointer-events-none" style={{ backgroundImage: 'radial-gradient(at 0% 0%, #0F172A 0, transparent 50%), radial-gradient(at 100% 100%, #1E1B4B 0, transparent 50%)' }} />
-
-      <div className="container-lux relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+    <section ref={container} className="py-24 md:py-32 bg-white relative overflow-hidden border-t border-border">
+      <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24 grid lg:grid-cols-12 gap-16 lg:gap-24 items-start">
         
-        <div className="ai-text-reveal">
-          <div className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent font-medium text-sm mb-6 border border-accent/20">
+        <div className="lg:col-span-5 ai-text-reveal sticky top-32">
+          <div className="text-xs font-semibold text-secondary uppercase tracking-[0.2em] mb-8">
             Artificial Intelligence
           </div>
-          <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-6 leading-tight">
+          <h2 className="text-[3rem] md:text-[4rem] font-medium text-primary mb-8 leading-[1.05] tracking-tight">
             Beyond the hype. <br />
-            <span className="text-gradient-malvision">Real AI that works.</span>
+            Real AI that works.
           </h2>
-          <p className="text-xl text-blue-100/60 font-light mb-10 max-w-lg leading-relaxed">
+          <p className="text-xl text-secondary/90 font-light mb-12 max-w-md leading-relaxed">
             We don't just wrapper APIs. We engineer robust, context-aware AI systems that integrate deeply into your business logic, automating the complex and augmenting your team.
           </p>
           
-          <Link to="/services/ai-agents">
-            <Button size="lg" className="h-14 px-8 text-base shadow-[0_0_30px_rgba(46,111,242,0.3)]">
-              Explore AI Architecture
-            </Button>
+          <Link 
+            to="/services/ai-agents"
+            className="inline-flex items-center gap-4 text-sm font-semibold text-primary uppercase tracking-widest hover:text-secondary transition-colors"
+          >
+            Explore AI Architecture <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
-        <div className="ai-visualization relative h-[500px] w-full flex items-center justify-center">
-          {/* Orbital Rings */}
-          <div className="ai-orbit-ring absolute w-[400px] h-[400px] rounded-full border border-white/5" />
-          <div className="ai-orbit-ring absolute w-[300px] h-[300px] rounded-full border border-accent/20 border-dashed" style={{ animationDirection: "reverse", animationDuration: "60s" }} />
-          
-          {/* Central Core */}
-          <div className="ai-core relative w-32 h-32 rounded-full bg-[#0A1224] border border-white/10 shadow-[0_0_80px_rgba(46,111,242,0.4)] flex items-center justify-center z-20">
-            <div className="absolute inset-0 bg-gradient-malvision opacity-20 rounded-full animate-pulse" />
-            <BrainCircuit className="w-12 h-12 text-white" />
-          </div>
-
-          {/* Orbital Items */}
-          {CAPABILITIES.map((cap) => {
-            // Position items along the outer ring (radius 200px)
-            const radius = 200;
-            const x = Math.cos((cap.angle * Math.PI) / 180) * radius;
-            const y = Math.sin((cap.angle * Math.PI) / 180) * radius;
-            
-            return (
-              <div 
-                key={cap.label}
-                className="ai-orbital-item absolute z-10 flex flex-col items-center gap-3"
-                style={{ transform: `translate(${x}px, ${y}px)` }}
-              >
-                <div className="w-12 h-12 rounded-2xl bg-[#0A1224] border border-white/10 flex items-center justify-center shadow-lg text-accent backdrop-blur-xl">
-                  <cap.icon className="w-5 h-5" />
-                </div>
-                <div className="text-xs font-medium text-white/80 bg-black/40 px-3 py-1 rounded-full backdrop-blur-md border border-white/5 whitespace-nowrap">
-                  {cap.label}
-                </div>
+        <div className="lg:col-span-7 ai-cap-list flex flex-col border-t border-border">
+          {CAPABILITIES.map((cap, i) => (
+            <div 
+              key={cap.label}
+              className="ai-cap-row py-8 border-b border-border flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-8 group"
+            >
+              <div className="text-xs font-mono text-secondary/70 mt-2">0{i + 1}</div>
+              <div>
+                <h3 className="text-2xl font-medium text-primary mb-2">{cap.label}</h3>
+                <p className="text-secondary/90 leading-relaxed max-w-sm">{cap.desc}</p>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
       </div>

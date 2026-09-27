@@ -26,29 +26,33 @@ const FAQS = [
 
 export function FAQ() {
   return (
-    <section className="section-lux bg-background border-y border-border">
-      <div className="container-lux max-w-4xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-primary mb-4">
-            Frequently Asked Questions
+    <section className="py-24 md:py-32 bg-white border-y border-border">
+      <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
+        
+        <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+          <h2 className="text-[3.5rem] md:text-[5rem] lg:text-[6rem] font-medium text-primary leading-none tracking-tight">
+            Common <br /> Questions.
           </h2>
-          <p className="text-secondary max-w-2xl mx-auto">
-            Technical and operational details about working with Malvision Technologies.
+          <p className="text-xl text-secondary/90 font-light max-w-md pt-4 leading-relaxed">
+            Technical and operational details about partnering with Malvision Technologies.
           </p>
         </div>
 
-        <Accordion type="single" collapsible className="w-full">
-          {FAQS.map((faq, i) => (
-            <AccordionItem key={i} value={`item-${i}`} className="border-border">
-              <AccordionTrigger className="text-left font-display font-semibold text-lg text-primary hover:text-accent transition-colors py-6">
-                {faq.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-secondary leading-relaxed pb-6">
-                {faq.a}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <div className="border-t border-border">
+          <Accordion type="single" collapsible className="w-full">
+            {FAQS.map((faq, i) => (
+              <AccordionItem key={i} value={`item-${i}`} className="border-b border-border">
+                <AccordionTrigger className="text-left font-medium text-xl md:text-2xl text-primary hover:text-secondary transition-colors py-8">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-lg text-secondary/90 leading-relaxed pb-8 max-w-4xl">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+
       </div>
     </section>
   );

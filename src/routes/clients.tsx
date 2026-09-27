@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Quote, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 
 export const Route = createFileRoute("/clients")({
@@ -11,12 +11,6 @@ export const Route = createFileRoute("/clients")({
         content:
           "Trusted by startups, schools, hospitals, and enterprises worldwide. See the brands partnering with Malvion Technologies.",
       },
-      { property: "og:title", content: "Clients — Malvion Technologies" },
-      {
-        property: "og:description",
-        content:
-          "Companies and organizations partnering with Malvion Technologies.",
-      },
     ],
   }),
   component: ClientsPage,
@@ -27,9 +21,9 @@ const clients = [
   { name: "Apex Hospital", industry: "Healthcare Software" },
   { name: "Nova Retail", industry: "E-commerce Platform" },
   { name: "Skyline Logistics", industry: "Supply Chain System" },
-  { name: "Bright Future Academy", industry: "School Management" },
+  { name: "Bright Future Academy", primary: true, industry: "School Management" },
   { name: "MediCare Plus", industry: "Hospital ERP" },
-  { name: "UrbanKart", industry: "Online Marketplace" },
+  { name: "UrbanKart", primary: true, industry: "Online Marketplace" },
   { name: "TechFusion Pvt Ltd", industry: "Cloud Solutions" },
 ];
 
@@ -57,81 +51,57 @@ const testimonials = [
 function ClientsPage() {
   return (
     <SiteLayout>
-      {/* Hero Section */}
-      <section className="border-b border-border bg-background">
-        <div className="container-px mx-auto max-w-7xl py-20 md:py-28">
-          <div className="text-mono-eyebrow mb-6">Our Clients</div>
-
-          <h1 className="max-w-5xl text-5xl font-bold tracking-tight md:text-6xl">
-            Trusted by businesses that
-            <span className="text-accent"> use our solutions daily.</span>
+      <section className="bg-background border-b border-border py-24 md:py-32">
+        <div className="container-lux mx-auto">
+          <div className="text-xs font-semibold tracking-[0.2em] uppercase text-secondary mb-8">
+            Our Clients
+          </div>
+          <h1 className="text-[3.5rem] md:text-[5rem] lg:text-[7rem] font-medium text-primary leading-[0.95] tracking-tight max-w-[1200px]">
+            Trusted by businesses that <br className="hidden md:block" />
+            <span className="text-secondary/70">use our solutions daily.</span>
           </h1>
-
-          <p className="mt-8 max-w-3xl text-lg leading-8 text-muted-foreground">
+          <p className="mt-12 max-w-2xl text-xl text-secondary/90 font-light leading-relaxed">
             From schools and hospitals to startups and enterprises —
             organizations trust Malvion Technologies for scalable software,
-            cloud infrastructure, AI automation, and modern digital platforms
-            that power their everyday operations.
+            cloud infrastructure, AI automation, and modern digital platforms.
           </p>
+        </div>
+      </section>
 
-          {/* Stats */}
-          <div className="mt-12 grid gap-6 sm:grid-cols-3">
-            <div className="rounded-2xl border border-border bg-card p-6">
-              <h3 className="text-4xl font-bold text-accent">50+</h3>
-              <p className="mt-2 text-muted-foreground">
-                Active Business Clients
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-border bg-card p-6">
-              <h3 className="text-4xl font-bold text-accent">99%</h3>
-              <p className="mt-2 text-muted-foreground">
-                Client Satisfaction Rate
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-border bg-card p-6">
-              <h3 className="text-4xl font-bold text-accent">24/7</h3>
-              <p className="mt-2 text-muted-foreground">
-                Technical Support & Monitoring
-              </p>
-            </div>
+      {/* Stats - Brutalist Typography */}
+      <section className="bg-primary-deep border-b border-white/5 py-16 md:py-24">
+        <div className="container-lux mx-auto grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
+          <div className="flex flex-col items-center justify-center py-12 md:py-0">
+            <div className="text-[4rem] md:text-[6rem] font-medium text-white leading-none mb-4 tracking-tighter">50+</div>
+            <div className="text-xs font-semibold text-white/50 uppercase tracking-[0.2em]">Active Clients</div>
+          </div>
+          <div className="flex flex-col items-center justify-center py-12 md:py-0">
+            <div className="text-[4rem] md:text-[6rem] font-medium text-white leading-none mb-4 tracking-tighter">99%</div>
+            <div className="text-xs font-semibold text-white/50 uppercase tracking-[0.2em]">Satisfaction Rate</div>
+          </div>
+          <div className="flex flex-col items-center justify-center py-12 md:py-0">
+            <div className="text-[4rem] md:text-[6rem] font-medium text-white leading-none mb-4 tracking-tighter">24/7</div>
+            <div className="text-xs font-semibold text-white/50 uppercase tracking-[0.2em]">Technical Support</div>
           </div>
         </div>
       </section>
 
-      {/* Clients Grid */}
-      <section>
-        <div className="container-px mx-auto max-w-7xl py-20">
-          <div className="mb-10">
-            <div className="text-mono-eyebrow mb-4">Trusted Partners</div>
-
-            <h2 className="text-3xl font-bold tracking-tight">
-              Companies & organizations using our software daily
+      {/* Clients Typographic List */}
+      <section className="bg-white py-24 md:py-32">
+        <div className="container-lux mx-auto">
+          <div className="mb-16">
+            <h2 className="text-[2.5rem] md:text-[4rem] font-medium text-primary leading-tight tracking-tight">
+              Partners & Organizations
             </h2>
-
-            <p className="mt-3 max-w-2xl text-muted-foreground">
-              We help businesses automate workflows, manage operations,
-              improve customer experience, and scale faster with modern
-              technology solutions.
-            </p>
           </div>
-
-          <div className="grid gap-6 md:grid-cols-4">
-            {clients.map((c) => (
-              <div
-                key={c.name}
-                className="group rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl"
-              >
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10 text-xl font-bold text-accent">
-                  {c.name.charAt(0)}
-                </div>
-
-                <h3 className="mt-6 text-xl font-semibold tracking-tight transition-colors group-hover:text-accent">
+          
+          <div className="flex flex-col border-t border-border">
+            {clients.map((c, i) => (
+              <div key={i} className="py-8 md:py-12 border-b border-border flex flex-col md:flex-row md:items-baseline justify-between group hover:pl-8 transition-all duration-500 cursor-default">
+                <h3 className="text-2xl md:text-4xl lg:text-5xl font-medium text-primary tracking-tight">
                   {c.name}
                 </h3>
-
-                <p className="mt-2 text-sm text-muted-foreground">
+                <p className="text-sm md:text-base text-secondary font-mono tracking-widest uppercase mt-4 md:mt-0">
                   {c.industry}
                 </p>
               </div>
@@ -140,69 +110,49 @@ function ClientsPage() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="border-t border-border bg-surface">
-        <div className="container-px mx-auto max-w-7xl py-20">
-          <div className="mb-10">
-            <div className="text-mono-eyebrow mb-4">Client Reviews</div>
-
-            <h2 className="text-3xl font-bold tracking-tight">
-              What our clients say about us
+      {/* Reviews */}
+      <section className="bg-background border-t border-border py-24 md:py-32">
+        <div className="container-lux mx-auto">
+          <div className="mb-20">
+            <div className="text-xs font-semibold tracking-[0.2em] uppercase text-secondary mb-6">
+              Client Reviews
+            </div>
+            <h2 className="text-[2.5rem] md:text-[4rem] font-medium text-primary leading-tight tracking-tight">
+              What they say about us
             </h2>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {testimonials.map((t) => (
-              <article
-                key={t.name}
-                className="relative rounded-3xl border border-border bg-card p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
-              >
-                <div className="flex items-center justify-between">
-                  <Quote className="h-10 w-10 text-accent/60" />
-
-                  <div className="flex items-center gap-1 text-accent">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-current" />
-                    ))}
-                  </div>
-                </div>
-
-                <p className="mt-6 leading-8 text-foreground/90">
+          <div className="grid md:grid-cols-3 gap-[1px] bg-border border border-border">
+            {testimonials.map((t, i) => (
+              <div key={i} className="bg-white p-8 md:p-12 flex flex-col justify-between">
+                <p className="text-lg md:text-xl text-primary font-light leading-relaxed mb-12 italic">
                   "{t.quote}"
                 </p>
-
-                <div className="mt-8 border-t border-border pt-5">
-                  <p className="font-semibold">{t.name}</p>
-
-                  <p className="text-sm text-muted-foreground">
-                    {t.role}
-                  </p>
+                <div>
+                  <div className="font-semibold text-primary">{t.name}</div>
+                  <div className="text-xs font-mono uppercase tracking-widest text-secondary mt-2">{t.role}</div>
                 </div>
-              </article>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="border-t border-border">
-        <div className="container-px mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 py-16 md:flex-row md:items-center">
-          <div>
-            <h3 className="text-3xl font-bold tracking-tight">
-              Ready to grow your business with technology?
+      <section className="bg-white border-y border-border py-24">
+        <div className="container-lux mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-12">
+          <div className="max-w-2xl">
+            <h3 className="text-[2.5rem] md:text-[3.5rem] font-medium text-primary leading-tight tracking-tight mb-4">
+              Ready to grow with <br /> modern technology?
             </h3>
-
-            <p className="mt-2 text-muted-foreground">
+            <p className="text-xl text-secondary font-light">
               Let’s build scalable software solutions for your company.
             </p>
           </div>
-
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 rounded-xl bg-accent px-7 py-3.5 font-semibold text-accent-foreground transition-all hover:scale-105"
+            className="group flex items-center justify-center gap-3 px-8 py-5 bg-primary text-white text-sm font-semibold hover:bg-black transition-colors shrink-0"
           >
-            Work with us
-            <ArrowRight className="h-4 w-4" />
+            Work with us <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </section>

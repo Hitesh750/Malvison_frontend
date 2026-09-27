@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const STATS = [
   { label: "Projects Delivered", value: 120, suffix: "+" },
@@ -13,8 +12,6 @@ const STATS = [
 export function TrustBar() {
   const container = useRef<HTMLDivElement>(null);
   const countersRef = useRef<(HTMLDivElement | null)[]>([]);
-  
-  // Use a simple state for prefers-reduced-motion fallback
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useGSAP(() => {
@@ -25,7 +22,6 @@ export function TrustBar() {
 
     countersRef.current.forEach((counter, i) => {
       if (!counter) return;
-      
       const targetValue = STATS[i].value;
       
       gsap.fromTo(counter, 
@@ -36,11 +32,10 @@ export function TrustBar() {
           ease: "power2.out",
           scrollTrigger: {
             trigger: container.current,
-            start: "top 90%", // Start counting when the top of the section enters 90% viewport
+            start: "top 90%",
           },
-          snap: { innerHTML: 1 }, // Snap to whole numbers
+          snap: { innerHTML: 1 },
           onUpdate: function() {
-            // Re-append the suffix
             counter.innerHTML = Math.ceil(Number(this.targets()[0].innerHTML)) + STATS[i].suffix;
           }
         }
@@ -63,18 +58,18 @@ export function TrustBar() {
   }, { scope: container });
 
   return (
-    <section ref={container} className="py-16 border-y border-border bg-white">
-      <div className="container-lux">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x-0 md:divide-x divide-border">
+    <section ref={container} className="py-24 bg-white border-y border-border">
+      <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8 border-x border-border">
           {STATS.map((stat, i) => (
-            <div key={stat.label} className="stat-item flex flex-col items-center justify-center text-center px-4">
+            <div key={stat.label} className="stat-item flex flex-col items-center justify-center text-center px-4 border-r border-border last:border-r-0">
               <div 
-                className="text-4xl md:text-5xl font-display font-bold text-primary mb-2"
+                className="text-[3.5rem] md:text-[5rem] lg:text-[6rem] font-medium text-primary leading-none mb-4 tracking-tighter"
                 ref={(el) => (countersRef.current[i] = el)}
               >
                 {reducedMotion ? `${stat.value}${stat.suffix}` : `0${stat.suffix}`}
               </div>
-              <div className="text-sm font-medium text-secondary uppercase tracking-wider">
+              <div className="text-xs font-semibold text-secondary/70 uppercase tracking-[0.2em]">
                 {stat.label}
               </div>
             </div>

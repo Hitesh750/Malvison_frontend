@@ -2,75 +2,67 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 
-export const Route = createFileRoute("/services")({
+export const Route = createFileRoute("/solutions")({
   head: () => ({
     meta: [
-      { title: "Services — Malvion Technologies" },
+      { title: "Solutions — Malvion Technologies" },
       {
         name: "description",
         content:
-          "AI, Cloud, Web, Frontend, and Backend services from Malvion Technologies.",
+          "Transformative digital solutions powered by AI, Cloud, and robust Engineering.",
       },
     ],
   }),
-  component: ServicesPage,
+  component: SolutionsPage,
 });
 
-const services = [
+const solutions = [
   {
     eyebrow: "01",
-    title: "AI Solutions",
-    desc: "From prototype to production: ML pipelines, LLM-powered features, RAG systems, computer vision, and intelligent automation.",
-    items: ["LLM & RAG apps", "Predictive ML models", "Document intelligence", "AI agents & assistants"],
+    title: "AI Agents & Automation",
+    desc: "Deploy intelligent agents that automate complex workflows, handle customer support, and augment your workforce with autonomous decision-making.",
+    items: ["Autonomous agents", "Workflow automation", "Customer support bots", "Process optimization"],
   },
   {
     eyebrow: "02",
-    title: "Cloud Services",
-    desc: "Cloud architecture done right — secure, observable, and cost-aware infrastructure on AWS, GCP, Azure, and Cloudflare.",
-    items: ["Cloud migration", "Kubernetes & serverless", "CI/CD & DevOps", "Cost & security audits"],
+    title: "Generative AI Integration",
+    desc: "Embed large language models into your existing products to unlock new capabilities, from content generation to intelligent search and discovery.",
+    items: ["LLM integration", "Custom RAG systems", "Semantic search", "Content generation pipelines"],
   },
   {
     eyebrow: "03",
-    title: "Web Development",
-    desc: "Marketing sites, dashboards, and SaaS platforms with modern stacks and a relentless focus on performance.",
-    items: ["SaaS platforms", "Marketing sites", "E-commerce", "Headless CMS"],
+    title: "Enterprise Cloud Platforms",
+    desc: "Modernize your infrastructure with scalable, secure, and resilient cloud architectures tailored for high-growth enterprise environments.",
+    items: ["Cloud-native architecture", "Infrastructure as Code", "High availability setup", "Performance tuning"],
   },
   {
     eyebrow: "04",
-    title: "Frontend Engineering",
-    desc: "Polished, accessible interfaces in Angular, React, and Vue — design systems, micro-frontends, and complex UI.",
-    items: ["React & Next.js", "Angular", "Vue & Nuxt", "Design systems"],
+    title: "SaaS & Product Development",
+    desc: "Accelerate your time to market with end-to-end product development. We build scalable SaaS platforms with polished user experiences.",
+    items: ["MVP development", "SaaS architecture", "Multi-tenant systems", "Subscription billing"],
   },
   {
     eyebrow: "05",
-    title: "Backend Engineering",
-    desc: "Robust APIs and services in Node.js and Python. Postgres, queues, microservices, and event-driven architectures.",
-    items: ["Node.js / TypeScript", "Python", "Postgres & Redis", "REST & GraphQL APIs"],
-  },
-  {
-    eyebrow: "06",
-    title: "Product Engineering",
-    desc: "End-to-end teams that own discovery, design, and delivery. Embed with your team or run as a standalone squad.",
-    items: ["Discovery sprints", "MVP delivery", "Long-term partnerships", "Team augmentation"],
+    title: "Data Intelligence",
+    desc: "Turn your raw data into actionable insights. We build data pipelines, data lakes, and analytics dashboards for data-driven organizations.",
+    items: ["Data engineering", "Predictive analytics", "Business intelligence", "Real-time dashboards"],
   },
 ];
 
-function ServicesPage() {
+function SolutionsPage() {
   return (
     <SiteLayout>
       <section className="bg-background border-b border-border py-24 md:py-32">
         <div className="container-lux mx-auto">
           <div className="text-xs font-semibold tracking-[0.2em] uppercase text-secondary mb-8">
-            Capabilities
+            Our Solutions
           </div>
           <h1 className="text-[3.5rem] md:text-[5rem] lg:text-[7rem] font-medium text-primary leading-[0.95] tracking-tight max-w-[1200px]">
-            A focused suite of <br className="hidden md:block" />
-            <span className="text-secondary/70">engineering services.</span>
+            Transformative solutions <br className="hidden md:block" />
+            <span className="text-secondary/70">for ambitious teams.</span>
           </h1>
           <p className="mt-12 max-w-2xl text-xl text-secondary/90 font-light leading-relaxed">
-            We work across the full stack — from intelligent backends to
-            polished interfaces. Pick a single service or compose your own
-            engagement.
+            We deliver end-to-end solutions that solve complex business challenges. From intelligent automation to scalable cloud platforms, we build technology that drives growth.
           </p>
         </div>
       </section>
@@ -78,7 +70,7 @@ function ServicesPage() {
       <section className="bg-white">
         <div className="container-lux mx-auto">
           <div className="flex flex-col border-x border-border divide-y divide-border">
-            {services.map((s) => (
+            {solutions.map((s) => (
               <div
                 key={s.title}
                 className="group flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-24 p-8 md:p-16 hover:bg-background transition-colors duration-500"
@@ -114,15 +106,15 @@ function ServicesPage() {
         <div className="container-lux mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-12">
           <div className="max-w-2xl">
             <h3 className="text-[2.5rem] md:text-[3.5rem] font-medium text-primary leading-tight tracking-tight mb-4">
-              Not sure which service fits? <br />
-              <span className="text-secondary/70">Let's scope it together.</span>
+              Ready to transform your business? <br />
+              <span className="text-secondary/70">Let's build together.</span>
             </h3>
           </div>
           <Link
             to="/contact"
             className="group flex items-center justify-center gap-3 px-8 py-5 bg-primary text-white text-sm font-semibold hover:bg-black transition-colors shrink-0"
           >
-            Talk to us <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            Start a Conversation <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </section>
